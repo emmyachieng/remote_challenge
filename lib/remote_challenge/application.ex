@@ -10,6 +10,7 @@ defmodule RemoteChallenge.Application do
     children = [
       RemoteChallengeWeb.Telemetry,
       RemoteChallenge.Repo,
+      {RemoteChallenge.Genstate, %{}},
       {DNSCluster, query: Application.get_env(:remote_challenge, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: RemoteChallenge.PubSub},
       # Start the Finch HTTP client for sending emails

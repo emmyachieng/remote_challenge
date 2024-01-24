@@ -4,6 +4,8 @@ defmodule RemoteChallengeWeb.PageController do
   def home(conn, _params) do
     # The home page is often custom made,
     # so skip the default app layout.
-    render(conn, :home, layout: false)
+    with list <- RemoteChallenge.Genstate.query_users() do
+      render(conn, :home, list: list, layout: false)
+    end   
   end
 end
